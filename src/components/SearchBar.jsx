@@ -42,7 +42,7 @@ function SearchBar({
       navigate(
         `/search?q=${encodeURIComponent(
           trimmedQuery
-        )}`
+        )}&page=1`
       );
     };
 

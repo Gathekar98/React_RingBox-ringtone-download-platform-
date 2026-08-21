@@ -13,6 +13,9 @@ import SearchBar
 import SoundGrid
   from "../components/SoundGrid";
 
+import Pagination
+  from "../components/Pagination";
+
 import {
   searchSounds,
 } from "../api/freesound";
@@ -26,13 +29,21 @@ import {
 } from "../hooks/useAudioPlayer";
 
 function Search() {
+  const PAGE_SIZE = 20;
+
   const [
     searchParams,
+    setSearchParams,
   ] = useSearchParams();
 
   const query =
     searchParams.get("q") ||
     "";
+
+  const pageFromUrl =
+    Number(
+      searchParams.get("page")
+    ) || 1;
 
   const [
     sounds,
@@ -49,6 +60,11 @@ function Search() {
     setError,
   ] = useState("");
 
+  const [
+    totalResults,
+    setTotalResults,
+  ] = useState(0);
+
   const audioPlayer =
     useAudioPlayer();
 
@@ -59,45 +75,29 @@ function Search() {
 
       if (!cleanQuery) {
         setSounds([]);
-        setLoading(false);
-
+        setTotalResults(0);
         return;
       }
 
       try {
         setLoading(true);
-
         setError("");
-
-        console.log(
-          "Search page query:",
-          cleanQuery
-        );
 
         const data =
           await searchSounds(
             cleanQuery,
-            1,
-            24
+            pageFromUrl,
+            PAGE_SIZE
           );
-
-        console.log(
-          "Search result count:",
-          data.count
-        );
-
-        const normalized =
-          data.results.map(
-            normalizeSound
-          );
-
-        console.log(
-          "Normalized results:",
-          normalized
-        );
 
         setSounds(
-          normalized
+          data.results.map(
+            normalizeSound
+          )
+        );
+
+        setTotalResults(
+          data.count || 0
         );
       } catch (error) {
         console.error(
@@ -105,18 +105,44 @@ function Search() {
           error
         );
 
-        setSounds([]);
-
         setError(
           "We couldn't load search results."
         );
+
+        setSounds([]);
       } finally {
         setLoading(false);
       }
     }
 
     loadSearchResults();
-  }, [query]);
+  }, [
+    query,
+    pageFromUrl,
+  ]);
+
+  const totalPages =
+    Math.max(
+      1,
+      Math.ceil(
+        totalResults /
+        PAGE_SIZE
+      )
+    );
+
+  const handlePageChange =
+    (page) => {
+      setSearchParams({
+        q: query,
+        page:
+          String(page),
+      });
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
 
   return (
     <section className="section">
@@ -137,15 +163,14 @@ function Search() {
         ) : (
           <p className="section-description">
             Search for ringtones,
-            notifications, rain,
+            rain, notifications,
             nature and more.
           </p>
         )}
 
         <div
           style={{
-            marginTop:
-              "26px",
+            marginTop: "26px",
           }}
         >
           <SearchBar
@@ -157,15 +182,13 @@ function Search() {
 
         <div
           style={{
-            marginTop:
-              "38px",
+            marginTop: "38px",
           }}
         >
 
           {loading && (
             <p>
-              Searching for
-              sounds...
+              Searching sounds...
             </p>
           )}
 
@@ -178,8 +201,7 @@ function Search() {
           {!loading &&
             !error &&
             query &&
-            sounds.length ===
-              0 && (
+            sounds.length === 0 && (
               <p className="empty-message">
                 No sounds found for
                 "{query}".
@@ -188,16 +210,27 @@ function Search() {
 
           {!loading &&
             !error &&
-            sounds.length >
-              0 && (
-              <SoundGrid
-                sounds={
-                  sounds
-                }
-                audioPlayer={
-                  audioPlayer
-                }
-              />
+            sounds.length > 0 && (
+              <>
+                <SoundGrid
+                  sounds={sounds}
+                  audioPlayer={
+                    audioPlayer
+                  }
+                />
+
+                <Pagination
+                  currentPage={
+                    pageFromUrl
+                  }
+                  totalPages={
+                    totalPages
+                  }
+                  onPageChange={
+                    handlePageChange
+                  }
+                />
+              </>
             )}
 
         </div>

@@ -9,6 +9,9 @@ import SearchBar
 import SoundGrid
   from "../components/SoundGrid";
 
+import Pagination
+  from "../components/Pagination";
+
 import {
   searchSounds,
 } from "../api/freesound";
@@ -22,6 +25,9 @@ import {
 } from "../hooks/useAudioPlayer";
 
 function Ringtones() {
+  const PAGE_SIZE = 20;
+  const MAX_VISIBLE_SOUNDS = 100;
+
   const [
     sounds,
     setSounds,
@@ -37,6 +43,16 @@ function Ringtones() {
     setError,
   ] = useState("");
 
+  const [
+    currentPage,
+    setCurrentPage,
+  ] = useState(1);
+
+  const [
+    totalResults,
+    setTotalResults,
+  ] = useState(0);
+
   const audioPlayer =
     useAudioPlayer();
 
@@ -44,36 +60,64 @@ function Ringtones() {
     async function loadSounds() {
       try {
         setLoading(true);
-
         setError("");
 
         const data =
           await searchSounds(
-            "ringtone notification",
-            1,
-            24
+            "ringtone notification sound",
+            currentPage,
+            PAGE_SIZE
+          );
+
+        const normalized =
+          data.results.map(
+            normalizeSound
           );
 
         setSounds(
-          data.results.map(
-            normalizeSound
+          normalized
+        );
+
+        setTotalResults(
+          Math.min(
+            data.count || 0,
+            MAX_VISIBLE_SOUNDS
           )
         );
       } catch (error) {
         console.error(
+          "Unable to load ringtones:",
           error
         );
 
         setError(
           "We couldn't load ringtones."
         );
+
+        setSounds([]);
       } finally {
         setLoading(false);
       }
     }
 
     loadSounds();
-  }, []);
+  }, [currentPage]);
+
+  const totalPages =
+    Math.ceil(
+      totalResults /
+      PAGE_SIZE
+    );
+
+  const handlePageChange =
+    (page) => {
+      setCurrentPage(page);
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
 
   return (
     <section className="section">
@@ -85,15 +129,15 @@ function Ringtones() {
         </h1>
 
         <p className="section-description">
-          Browse ringtones,
-          notifications and
-          short audio effects.
+          Browse a curated collection
+          of short ringtones,
+          notifications and sound
+          effects.
         </p>
 
         <div
           style={{
-            marginTop:
-              "28px",
+            marginTop: "28px",
           }}
         >
           <SearchBar />
@@ -101,8 +145,7 @@ function Ringtones() {
 
         <div
           style={{
-            marginTop:
-              "38px",
+            marginTop: "38px",
           }}
         >
 
@@ -120,16 +163,27 @@ function Ringtones() {
 
           {!loading &&
             !error &&
-            sounds.length >
-              0 && (
-              <SoundGrid
-                sounds={
-                  sounds
-                }
-                audioPlayer={
-                  audioPlayer
-                }
-              />
+            sounds.length > 0 && (
+              <>
+                <SoundGrid
+                  sounds={sounds}
+                  audioPlayer={
+                    audioPlayer
+                  }
+                />
+
+                <Pagination
+                  currentPage={
+                    currentPage
+                  }
+                  totalPages={
+                    totalPages
+                  }
+                  onPageChange={
+                    handlePageChange
+                  }
+                />
+              </>
             )}
 
         </div>

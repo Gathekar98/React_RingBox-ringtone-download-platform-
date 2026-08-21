@@ -31,7 +31,7 @@ function Hero() {
       navigate(
         `/search?q=${encodeURIComponent(
           trimmedQuery
-        )}`
+        )}&page=1`
       );
     };
 
@@ -40,7 +40,7 @@ function Hero() {
       navigate(
         `/search?q=${encodeURIComponent(
           value
-        )}`
+        )}&page=1`
       );
     };
 

@@ -15,7 +15,7 @@ function CategoryCard({
       navigate(
         `/search?q=${encodeURIComponent(
           category.searchQuery
-        )}`
+        )}&page=1`
       );
     };
 
