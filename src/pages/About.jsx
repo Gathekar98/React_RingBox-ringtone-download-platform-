@@ -1,12 +1,28 @@
-function About() {
+import {
+  useParams,
+} from "react-router-dom";
+
+function SoundDetails() {
+  const { id } =
+    useParams();
+
   return (
-    <section>
-      <h1>About RingBox</h1>
-      <p>
-        RingBox is a modern sound discovery and ringtone platform.
-      </p>
+    <section className="section">
+
+      <div className="container">
+
+        <h1 className="section-title">
+          Sound Details
+        </h1>
+
+        <p className="section-description">
+          Sound ID: {id}
+        </p>
+
+      </div>
+
     </section>
   );
 }
 
-export default About;
+export default SoundDetails;

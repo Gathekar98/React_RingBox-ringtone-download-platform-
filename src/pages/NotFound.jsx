@@ -1,12 +1,35 @@
-import { Link } from "react-router-dom";
+import {
+  Link,
+} from "react-router-dom";
 
 function NotFound() {
   return (
-    <section>
-      <h1>404</h1>
-      <p>We could not find that page.</p>
+    <section className="section">
 
-      <Link to="/">Return Home</Link>
+      <div className="container">
+
+        <h1 className="section-title">
+          404
+        </h1>
+
+        <p className="section-description">
+          We couldn't find that
+          page.
+        </p>
+
+        <div
+          style={{
+            marginTop:
+              "20px",
+          }}
+        >
+          <Link to="/">
+            Return Home
+          </Link>
+        </div>
+
+      </div>
+
     </section>
   );
 }

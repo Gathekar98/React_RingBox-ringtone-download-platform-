@@ -3,13 +3,17 @@ import "./Footer.css";
 function Footer() {
   return (
     <footer className="footer">
+
       <div className="container footer__inner">
 
         <div>
-          <strong>♫ RingBox</strong>
+          <strong>
+            ♫ RingBox
+          </strong>
 
           <p>
-            Discover sounds worth hearing.
+            Discover sounds
+            worth hearing.
           </p>
         </div>
 
@@ -18,6 +22,7 @@ function Footer() {
         </p>
 
       </div>
+
     </footer>
   );
 }

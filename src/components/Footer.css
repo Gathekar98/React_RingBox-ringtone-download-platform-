@@ -1,16 +1,26 @@
 .footer {
-  border-top: 1px solid var(--border);
+  border-top:
+    1px solid var(--border);
 
-  padding: 34px 0;
+  padding:
+    34px 0;
 
-  background: rgba(255, 255, 255, 0.015);
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.015
+    );
 }
 
 .footer__inner {
   display: flex;
 
   align-items: center;
-  justify-content: space-between;
+
+  justify-content:
+    space-between;
 
   gap: 20px;
 }
@@ -22,14 +32,19 @@
 .footer p {
   margin-top: 7px;
 
-  color: var(--text-secondary);
+  color:
+    var(--text-secondary);
 
   font-size: 0.85rem;
 }
 
-@media (max-width: 600px) {
+@media (
+  max-width: 600px
+) {
   .footer__inner {
     flex-direction: column;
-    align-items: flex-start;
+
+    align-items:
+      flex-start;
   }
 }
