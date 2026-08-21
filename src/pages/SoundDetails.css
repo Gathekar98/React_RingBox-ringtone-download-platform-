@@ -417,3 +417,12 @@
     height: 66px;
   }
 }
+.sound-details__title-row {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 18px;
+}

@@ -28,6 +28,10 @@ import {
   useAudioPlayer,
 } from "../hooks/useAudioPlayer";
 
+import {
+  useFavorites,
+} from "../hooks/useFavorites";
+
 function Search() {
   const PAGE_SIZE = 20;
 
@@ -67,7 +71,8 @@ function Search() {
 
   const audioPlayer =
     useAudioPlayer();
-
+  const favorites = useFavorites();
+  
   useEffect(() => {
     async function loadSearchResults() {
       const cleanQuery =
@@ -214,9 +219,8 @@ function Search() {
               <>
                 <SoundGrid
                   sounds={sounds}
-                  audioPlayer={
-                    audioPlayer
-                  }
+                  audioPlayer={audioPlayer}
+                  favorites={favorites}
                 />
 
                 <Pagination

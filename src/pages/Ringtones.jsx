@@ -24,6 +24,10 @@ import {
   useAudioPlayer,
 } from "../hooks/useAudioPlayer";
 
+import {
+  useFavorites,
+} from "../hooks/useFavorites";
+
 function Ringtones() {
   const PAGE_SIZE = 20;
   const MAX_VISIBLE_SOUNDS = 100;
@@ -43,6 +47,7 @@ function Ringtones() {
     setError,
   ] = useState("");
 
+  const favorites = useFavorites();
   const [
     currentPage,
     setCurrentPage,
@@ -166,10 +171,9 @@ function Ringtones() {
             sounds.length > 0 && (
               <>
                 <SoundGrid
-                  sounds={sounds}
-                  audioPlayer={
-                    audioPlayer
-                  }
+                    sounds={sounds}
+                    audioPlayer={audioPlayer}
+                    favorites={favorites}
                 />
 
                 <Pagination

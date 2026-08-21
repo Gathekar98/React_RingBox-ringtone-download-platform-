@@ -1,0 +1,54 @@
+.favorite-button {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid var(--border);
+
+  border-radius: 50%;
+
+  background: rgba(
+    9,
+    11,
+    16,
+    0.72
+  );
+
+  color: var(--text-primary);
+
+  font-size: 1.25rem;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.favorite-button:hover {
+  transform: scale(1.08);
+
+  background:
+    var(--surface-hover);
+}
+
+.favorite-button--active {
+  color: #ff6b81;
+
+  background:
+    rgba(
+      255,
+      107,
+      129,
+      0.1
+    );
+
+  border-color:
+    rgba(
+      255,
+      107,
+      129,
+      0.35
+    );
+}

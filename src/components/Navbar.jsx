@@ -35,6 +35,10 @@ function Navbar() {
             Categories
           </NavLink>
 
+            <NavLink to="/favorites">
+              Favorites
+            </NavLink>
+
           <NavLink to="/about">
             About
           </NavLink>

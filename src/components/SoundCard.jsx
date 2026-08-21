@@ -1,12 +1,11 @@
-import {
-  Link,
-} from "react-router-dom";
-
+import { Link,} from "react-router-dom";
+import FavoriteButton  from "./FavoriteButton";
 import "./SoundCard.css";
 
 function SoundCard({
   sound,
   audioPlayer,
+  favorites,
 }) {
   const {
     currentSoundId,
@@ -89,7 +88,14 @@ function SoundCard({
             ♫
           </div>
         )}
-
+        {favorites && (
+            <div className="sound-card__favorite">
+                <FavoriteButton
+                sound={sound}
+                favorites={favorites}
+                />
+            </div>
+        )}
         <button
           type="button"
           className="sound-card__play"

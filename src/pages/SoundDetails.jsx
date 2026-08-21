@@ -25,6 +25,12 @@ import SoundGrid
   from "../components/SoundGrid";
 
 import "./SoundDetails.css";
+import FavoriteButton
+  from "../components/FavoriteButton";
+
+import {
+  useFavorites,
+} from "../hooks/useFavorites";  
 
 function SoundDetails() {
   const { id } = useParams();
@@ -51,6 +57,9 @@ function SoundDetails() {
 
   const audioPlayer =
     useAudioPlayer();
+   
+    const favorites =
+    useFavorites();
 
   useEffect(() => {
     async function loadSound() {
@@ -309,10 +318,16 @@ function SoundDetails() {
                 RingBox Sound
               </p>
 
-              <h1>
-                {sound.title}
-              </h1>
-
+              <div className="sound-details__title-row">
+                    <h1>
+                        {sound.title}
+                    </h1>
+                    <FavoriteButton
+                        sound={sound}
+                        favorites={favorites}
+                    />
+                </div>
+                
               <p className="sound-details__creator">
                 Uploaded by{" "}
                 <strong>

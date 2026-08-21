@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Ringtones from "./pages/Ringtones";
 import Categories from "./pages/Categories";
 import Search from "./pages/Search";
+import Favorites from "./pages/Favorites";
 import SoundDetails from "./pages/SoundDetails";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
@@ -19,6 +20,7 @@ function App() {
           <Route path="/ringtones" element={<Ringtones />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/favorites" element={<Favorites />} />
           <Route path="/sound/:id" element={<SoundDetails />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />

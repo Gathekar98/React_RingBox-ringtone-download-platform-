@@ -23,6 +23,10 @@ import {
 } from "../utils/normalizeSound";
 
 import {
+  useFavorites,
+} from "../hooks/useFavorites";
+
+import {
   useAudioPlayer,
 } from "../hooks/useAudioPlayer";
 
@@ -45,9 +49,8 @@ function Home() {
     error,
     setError,
   ] = useState("");
-
-  const audioPlayer =
-    useAudioPlayer();
+  const favorites = useFavorites();
+  const audioPlayer = useAudioPlayer();
 
   useEffect(() => {
     async function loadSounds() {
@@ -167,12 +170,9 @@ function Home() {
               sounds.length >
                 0 && (
                 <SoundGrid
-                  sounds={
-                    sounds
-                  }
-                  audioPlayer={
-                    audioPlayer
-                  }
+                  sounds={sounds}
+                  audioPlayer={audioPlayer}
+                  favorites={favorites}
                 />
               )}
 
