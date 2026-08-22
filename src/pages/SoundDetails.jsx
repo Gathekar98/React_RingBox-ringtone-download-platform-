@@ -22,7 +22,7 @@ import {
 
 import {
   useGlobalAudioPlayer,
-} from "../context/AudioPlayerContext";
+} from "../context/audioPlayerContext";
 
 import SoundGrid
   from "../components/SoundGrid";
@@ -215,6 +215,14 @@ function SoundDetails() {
 
   return (
     <>
+      <title>
+        {sound.title} | RingBox
+      </title>
+
+      <meta
+        name="description"
+        content={`Listen to ${sound.title} by ${sound.creator} on RingBox.`}
+      />
       <section className="sound-details">
 
         <div className="container">

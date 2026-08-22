@@ -9,45 +9,56 @@ import {
 
 function Categories() {
   return (
-    <section className="section">
+    <>
+      <title>
+        Sound Categories | RingBox
+      </title>
 
-      <div className="container">
+      <meta
+        name="description"
+        content="Browse RingBox sounds by categories including nature, retro, notifications, ambient, bells and more."
+      />
+      <section className="section">
 
-        <h1 className="section-title">
-          Browse Categories
-        </h1>
+        <div className="container">
 
-        <p className="section-description">
-          Explore sounds by mood,
-          style and use case.
-        </p>
+          <h1 className="section-title">
+            Browse Categories
+          </h1>
 
-        <div
-          className="categories-grid"
-          style={{
-            marginTop:
-              "36px",
-          }}
-        >
+          <p className="section-description">
+            Explore sounds by mood,
+            style and use case.
+          </p>
 
-          {categories.map(
-            (category) => (
-              <CategoryCard
-                key={
-                  category.id
-                }
-                category={
-                  category
-                }
-              />
-            )
-          )}
+          <div
+            className="categories-grid"
+            style={{
+              marginTop:
+                "36px",
+            }}
+          >
+
+            {categories.map(
+              (category) => (
+                <CategoryCard
+                  key={
+                    category.id
+                  }
+                  category={
+                    category
+                  }
+                />
+              )
+            )}
+
+          </div>
 
         </div>
 
-      </div>
-
-    </section>
+      </section>
+    </>
+    
   );
 }
 

@@ -32,7 +32,7 @@ import {
 
 import {
   useGlobalAudioPlayer,
-} from "../context/AudioPlayerContext";
+} from "../context/audioPlayerContext";
 
 import {
   useFavorites,
@@ -157,101 +157,117 @@ function Search() {
     };
 
   return (
-    <section className="section">
+    <>
+      <title>
+      {query
+          ? `${query} Sounds | RingBox`
+          : "Search Sounds | RingBox"}
+      </title>
 
-      <div className="container">
+      <meta
+        name="description"
+        content={
+          query
+            ? `Search RingBox for ${query} ringtones and sound effects.`
+            : "Search RingBox for ringtones, notification sounds, nature audio and more."
+        }
+      />
+      <section className="section">
 
-        <h1 className="section-title">
-          Search Sounds
-        </h1>
+        <div className="container">
 
-        {query ? (
-          <p className="section-description">
-            Showing sounds for{" "}
-            <strong>
-              "{query}"
-            </strong>
-          </p>
-        ) : (
-          <p className="section-description">
-            Search for ringtones,
-            rain, notifications,
-            nature and more.
-          </p>
-        )}
+          <h1 className="section-title">
+            Search Sounds
+          </h1>
 
-        <div
-          style={{
-            marginTop: "26px",
-          }}
-        >
-          <SearchBar
-            initialValue={
-              query
-            }
-          />
-        </div>
-
-        <div
-          style={{
-            marginTop: "38px",
-          }}
-        >
-
-          {loading && (
-            <SoundSkeleton
-              count={8}
-            />
-          )}
-
-          {error && (
-            <p className="error-message">
-              {error}
+          {query ? (
+            <p className="section-description">
+              Showing sounds for{" "}
+              <strong>
+                "{query}"
+              </strong>
+            </p>
+          ) : (
+            <p className="section-description">
+              Search for ringtones,
+              rain, notifications,
+              nature and more.
             </p>
           )}
 
-          {!loading &&
-            !error &&
-            query &&
-            sounds.length === 0 && (
-              <EmptyState
-                icon="⌕"
-                title={`No results for "${query}"`}
-                description="Try a shorter or broader search such as rain, bell, nature, retro or notification."
-                actionLabel="Browse All Sounds"
-                actionTo="/ringtones"
+          <div
+            style={{
+              marginTop: "26px",
+            }}
+          >
+            <SearchBar
+              initialValue={
+                query
+              }
+            />
+          </div>
+
+          <div
+            style={{
+              marginTop: "38px",
+            }}
+          >
+
+            {loading && (
+              <SoundSkeleton
+                count={8}
               />
             )}
 
-          {!loading &&
-            !error &&
-            sounds.length > 0 && (
-              <>
-                <SoundGrid
-                  sounds={sounds}
-                  audioPlayer={audioPlayer}
-                  favorites={favorites}
-                />
-
-                <Pagination
-                  currentPage={
-                    pageFromUrl
-                  }
-                  totalPages={
-                    totalPages
-                  }
-                  onPageChange={
-                    handlePageChange
-                  }
-                />
-              </>
+            {error && (
+              <p className="error-message">
+                {error}
+              </p>
             )}
+
+            {!loading &&
+              !error &&
+              query &&
+              sounds.length === 0 && (
+                <EmptyState
+                  icon="⌕"
+                  title={`No results for "${query}"`}
+                  description="Try a shorter or broader search such as rain, bell, nature, retro or notification."
+                  actionLabel="Browse All Sounds"
+                  actionTo="/ringtones"
+                />
+              )}
+
+            {!loading &&
+              !error &&
+              sounds.length > 0 && (
+                <>
+                  <SoundGrid
+                    sounds={sounds}
+                    audioPlayer={audioPlayer}
+                    favorites={favorites}
+                  />
+
+                  <Pagination
+                    currentPage={
+                      pageFromUrl
+                    }
+                    totalPages={
+                      totalPages
+                    }
+                    onPageChange={
+                      handlePageChange
+                    }
+                  />
+                </>
+              )}
+
+          </div>
 
         </div>
 
-      </div>
-
-    </section>
+      </section>
+    </>
   );
 }
 

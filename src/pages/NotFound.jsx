@@ -4,33 +4,43 @@ import {
 
 function NotFound() {
   return (
-    <section className="section">
+    <>
+      <title>
+        Page Not Found | RingBox
+      </title>
 
-      <div className="container">
+      <meta
+        name="robots"
+        content="noindex"
+      />
+      <section className="section">
 
-        <h1 className="section-title">
-          404
-        </h1>
+        <div className="container">
 
-        <p className="section-description">
-          We couldn't find that
-          page.
-        </p>
+          <h1 className="section-title">
+            404
+          </h1>
 
-        <div
-          style={{
-            marginTop:
-              "20px",
-          }}
-        >
-          <Link to="/">
-            Return Home
-          </Link>
+          <p className="section-description">
+            We couldn't find that
+            page.
+          </p>
+
+          <div
+            style={{
+              marginTop:
+                "20px",
+            }}
+          >
+            <Link to="/">
+              Return Home
+            </Link>
+          </div>
+
         </div>
 
-      </div>
-
-    </section>
+      </section>
+    </>
   );
 }
 

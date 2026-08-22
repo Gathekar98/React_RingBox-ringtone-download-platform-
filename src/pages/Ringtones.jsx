@@ -25,7 +25,7 @@ import {
 
 import {
   useGlobalAudioPlayer,
-} from "../context/AudioPlayerContext";
+} from "../context/audioPlayerContext";
 
 import {
   useFavorites,
@@ -128,76 +128,87 @@ function Ringtones() {
     };
 
   return (
-    <section className="section">
+    <>
+      <title>
+        Explore Sounds | RingBox
+      </title>
 
-      <div className="container">
+      <meta
+        name="description"
+        content="Browse ringtones, notification sounds and short audio effects on RingBox."
+      />
+      <section className="section">
 
-        <h1 className="section-title">
-          Explore Sounds
-        </h1>
+        <div className="container">
 
-        <p className="section-description">
-          Browse a curated collection
-          of short ringtones,
-          notifications and sound
-          effects.
-        </p>
+          <h1 className="section-title">
+            Explore Sounds
+          </h1>
 
-        <div
-          style={{
-            marginTop: "28px",
-          }}
-        >
-          <SearchBar />
-        </div>
+          <p className="section-description">
+            Browse a curated collection
+            of short ringtones,
+            notifications and sound
+            effects.
+          </p>
 
-        <div
-          style={{
-            marginTop: "38px",
-          }}
-        >
+          <div
+            style={{
+              marginTop: "28px",
+            }}
+          >
+            <SearchBar />
+          </div>
 
-          {loading && (
-            <SoundSkeleton
-              count={8}
-            />
-          )}
+          <div
+            style={{
+              marginTop: "38px",
+            }}
+          >
 
-          {error && (
-            <p className="error-message">
-              {error}
-            </p>
-          )}
-
-          {!loading &&
-            !error &&
-            sounds.length > 0 && (
-              <>
-                <SoundGrid
-                    sounds={sounds}
-                    audioPlayer={audioPlayer}
-                    favorites={favorites}
-                />
-
-                <Pagination
-                  currentPage={
-                    currentPage
-                  }
-                  totalPages={
-                    totalPages
-                  }
-                  onPageChange={
-                    handlePageChange
-                  }
-                />
-              </>
+            {loading && (
+              <SoundSkeleton
+                count={8}
+              />
             )}
 
+            {error && (
+              <p className="error-message">
+                {error}
+              </p>
+            )}
+
+            {!loading &&
+              !error &&
+              sounds.length > 0 && (
+                <>
+                  <SoundGrid
+                      sounds={sounds}
+                      audioPlayer={audioPlayer}
+                      favorites={favorites}
+                  />
+
+                  <Pagination
+                    currentPage={
+                      currentPage
+                    }
+                    totalPages={
+                      totalPages
+                    }
+                    onPageChange={
+                      handlePageChange
+                    }
+                  />
+                </>
+              )}
+
+          </div>
+
         </div>
 
-      </div>
-
-    </section>
+      </section>
+    </>
+    
   );
 }
 

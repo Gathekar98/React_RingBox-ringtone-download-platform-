@@ -3,7 +3,7 @@ import SoundGrid
 
 import {
   useGlobalAudioPlayer,
-} from "../context/AudioPlayerContext";
+} from "../context/audioPlayerContext";
 
 import EmptyState
   from "../components/EmptyState";
@@ -25,58 +25,68 @@ function Recent() {
   } = audioPlayer;
 
   return (
-    <section className="section">
-      <div className="container">
+    <>
+        <title>
+            Recently Played | RingBox
+        </title>
 
-        <div className="recent-header">
-          <div>
-            <h1 className="section-title">
-              Recently Played
-            </h1>
+        <meta
+        name="description"
+        content="Return to sounds you recently played on RingBox."
+        />
+        <section className="section">
+        <div className="container">
 
-            <p className="section-description">
-              Sounds you recently listened to.
-            </p>
-          </div>
+            <div className="recent-header">
+            <div>
+                <h1 className="section-title">
+                Recently Played
+                </h1>
 
-          {recentlyPlayed.length > 0 && (
-            <button
-              type="button"
-              className="recent-clear"
-              onClick={
-                clearRecentlyPlayed
-              }
+                <p className="section-description">
+                Sounds you recently listened to.
+                </p>
+            </div>
+
+            {recentlyPlayed.length > 0 && (
+                <button
+                type="button"
+                className="recent-clear"
+                onClick={
+                    clearRecentlyPlayed
+                }
+                >
+                Clear
+                </button>
+            )}
+            </div>
+
+            <div
+            style={{
+                marginTop: "32px",
+            }}
             >
-              Clear
-            </button>
-          )}
-        </div>
-
-        <div
-          style={{
-            marginTop: "32px",
-          }}
-        >
-          {recentlyPlayed.length === 0 ? (
-            <EmptyState
-                icon="↺"
-                title="Nothing played yet"
-                description="Play a sound and it will appear in your recently played list."
-                actionLabel="Explore Sounds"
-                actionTo="/ringtones"
+            {recentlyPlayed.length === 0 ? (
+                <EmptyState
+                    icon="↺"
+                    title="Nothing played yet"
+                    description="Play a sound and it will appear in your recently played list."
+                    actionLabel="Explore Sounds"
+                    actionTo="/ringtones"
+                    />
+            ) : (
+                <SoundGrid
+                sounds={recentlyPlayed}
+                audioPlayer={audioPlayer}
+                favorites={favorites}
                 />
-          ) : (
-            <SoundGrid
-              sounds={recentlyPlayed}
-              audioPlayer={audioPlayer}
-              favorites={favorites}
-            />
-          )}
-        </div>
+            )}
+            </div>
 
-      </div>
-    </section>
-  );
+        </div>
+        </section>
+    </>
+    );
 }
 
 export default Recent;

@@ -4,7 +4,7 @@ import {
 
 import {
   useGlobalAudioPlayer,
-} from "../context/AudioPlayerContext";
+} from "../context/audioPlayerContext";
 
 import "./BottomPlayer.css";
 

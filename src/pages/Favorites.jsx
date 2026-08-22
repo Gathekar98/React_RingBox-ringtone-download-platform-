@@ -8,7 +8,7 @@ import EmptyState
 
 import {
   useGlobalAudioPlayer,
-} from "../context/AudioPlayerContext";
+} from "../context/audioPlayerContext";
 
 import {
   useFavorites,
@@ -22,67 +22,77 @@ function Favorites() {
     useFavorites();
 
   return (
-    <section className="section">
+    <>
+      <title>
+        Favorites | RingBox
+      </title>
 
-      <div className="container">
+      <meta
+        name="description"
+        content="View your saved RingBox sounds and favorite ringtones."
+      />
+      <section className="section">
 
-        <h1 className="section-title">
-          Favorites
-        </h1>
+        <div className="container">
 
-        <p className="section-description">
-          Sounds you've saved for
-          later.
-        </p>
+          <h1 className="section-title">
+            Favorites
+          </h1>
 
-        <div
-          style={{
-            marginTop: "36px",
-          }}
-        >
-          {favorites.favorites.length ===
-          0 ? (
-            <div>
-              <EmptyState
-                icon="♡"
-                title="No favorites yet"
-                description="Save sounds you like and they'll appear here."
-                actionLabel="Explore Sounds"
-                actionTo="/ringtones"
-              />
+          <p className="section-description">
+            Sounds you've saved for
+            later.
+          </p>
 
-              <div
-                style={{
-                  marginTop:
-                    "18px",
-                }}
-              >
-                <Link
-                  to="/ringtones"
-                  className="navbar__cta"
+          <div
+            style={{
+              marginTop: "36px",
+            }}
+          >
+            {favorites.favorites.length ===
+            0 ? (
+              <div>
+                <EmptyState
+                  icon="♡"
+                  title="No favorites yet"
+                  description="Save sounds you like and they'll appear here."
+                  actionLabel="Explore Sounds"
+                  actionTo="/ringtones"
+                />
+
+                <div
+                  style={{
+                    marginTop:
+                      "18px",
+                  }}
                 >
-                  Explore Sounds
-                </Link>
+                  <Link
+                    to="/ringtones"
+                    className="navbar__cta"
+                  >
+                    Explore Sounds
+                  </Link>
+                </div>
               </div>
-            </div>
-          ) : (
-            <SoundGrid
-              sounds={
-                favorites.favorites
-              }
-              audioPlayer={
-                audioPlayer
-              }
-              favorites={
-                favorites
-              }
-            />
-          )}
+            ) : (
+              <SoundGrid
+                sounds={
+                  favorites.favorites
+                }
+                audioPlayer={
+                  audioPlayer
+                }
+                favorites={
+                  favorites
+                }
+              />
+            )}
+          </div>
+
         </div>
 
-      </div>
-
-    </section>
+      </section>
+    </>
   );
 }
 

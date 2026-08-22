@@ -31,7 +31,7 @@ import {
 
 import {
   useGlobalAudioPlayer,
-} from "../context/AudioPlayerContext";
+} from "../context/audioPlayerContext";
 
 import {
   categories,
@@ -98,6 +98,14 @@ function Home() {
 
   return (
     <>
+      <title>
+        RingBox — Discover Ringtones & Sounds
+      </title>
+
+      <meta
+        name="description"
+        content="Discover, preview and save ringtones, notification sounds, nature audio, retro sounds and more with RingBox."
+      />
       <Hero />
 
       <section className="section">
