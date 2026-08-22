@@ -10,6 +10,7 @@ import Favorites from "./pages/Favorites";
 import SoundDetails from "./pages/SoundDetails";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
+import Recent from "./pages/Recent";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/search" element={<Search />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/recent" element={<Recent />}/>
           <Route path="/sound/:id" element={<SoundDetails />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />

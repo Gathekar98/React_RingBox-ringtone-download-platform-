@@ -38,11 +38,13 @@ function Navbar() {
             <NavLink to="/favorites">
               Favorites
             </NavLink>
+            <NavLink to="/recent">
+              Recent
+            </NavLink>
 
-          <NavLink to="/about">
-            About
-          </NavLink>
-
+            <NavLink to="/about">
+              About
+            </NavLink>
         </nav>
 
         <Link

@@ -1,0 +1,46 @@
+.sound-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sound-actions button {
+  border: 1px solid var(--border);
+
+  padding: 10px 14px;
+
+  border-radius: var(--radius-sm);
+
+  background: var(--surface);
+
+  color: var(--text-primary);
+
+  font-size: 0.85rem;
+
+  transition: 0.2s ease;
+}
+
+.sound-actions button:hover:not(:disabled) {
+  background: var(--surface-hover);
+
+  border-color: rgba(
+    124,
+    92,
+    255,
+    0.4
+  );
+}
+
+.sound-actions button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+.sound-actions__message {
+  margin-top: 10px;
+
+  color: var(--success);
+
+  font-size: 0.78rem;
+}

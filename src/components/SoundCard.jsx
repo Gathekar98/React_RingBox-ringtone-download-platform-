@@ -1,5 +1,6 @@
 import { Link,} from "react-router-dom";
 import FavoriteButton  from "./FavoriteButton";
+import SoundActions from "./SoundActions";
 import "./SoundCard.css";
 
 function SoundCard({
@@ -205,6 +206,11 @@ function SoundCard({
               .toFixed(1)}
           </span>
 
+        </div>
+        <div className="sound-card__actions">
+          <SoundActions
+            sound={sound}
+          />
         </div>
 
       </div>

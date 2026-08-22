@@ -264,3 +264,21 @@
 
   z-index: 2;
 }
+
+.sound-card__actions {
+  margin-top: 14px;
+}
+
+.sound-card__actions
+.sound-actions {
+  gap: 8px;
+}
+
+.sound-card__actions
+.sound-actions button {
+  flex: 1;
+
+  padding: 8px 10px;
+
+  font-size: 0.75rem;
+}

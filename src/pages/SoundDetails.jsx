@@ -8,6 +8,9 @@ import {
   useParams,
 } from "react-router-dom";
 
+import SoundActions
+  from "../components/SoundActions";
+
 import {
   getSoundById,
   searchSounds,
@@ -382,7 +385,21 @@ function SoundDetails() {
                 <strong>
                   {sound.license}
                 </strong>
+                <p className="sound-details__license-note">
+                  Please review the original Freesound
+                  license before redistributing or using
+                  this sound commercially.
+                </p>
 
+              </div>
+              <div
+                style={{
+                  marginTop: "20px",
+                }}
+              >
+                <SoundActions
+                  sound={sound}
+                />
               </div>
 
               {sound.freesoundUrl && (
