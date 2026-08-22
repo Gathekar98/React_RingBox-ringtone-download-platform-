@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import SoundGrid
   from "../components/SoundGrid";
 
+import EmptyState
+  from "../components/EmptyState";
+
 import {
   useGlobalAudioPlayer,
 } from "../context/AudioPlayerContext";
@@ -40,10 +43,13 @@ function Favorites() {
           {favorites.favorites.length ===
           0 ? (
             <div>
-              <p className="empty-message">
-                You haven't saved
-                any sounds yet.
-              </p>
+              <EmptyState
+                icon="♡"
+                title="No favorites yet"
+                description="Save sounds you like and they'll appear here."
+                actionLabel="Explore Sounds"
+                actionTo="/ringtones"
+              />
 
               <div
                 style={{

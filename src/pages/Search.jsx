@@ -13,8 +13,14 @@ import SearchBar
 import SoundGrid
   from "../components/SoundGrid";
 
+import SoundSkeleton
+  from "../components/SoundSkeleton";
+
 import Pagination
   from "../components/Pagination";
+  
+import EmptyState
+  from "../components/EmptyState";
 
 import {
   searchSounds,
@@ -71,7 +77,7 @@ function Search() {
 
   const audioPlayer =
   useGlobalAudioPlayer();
-  
+
   const favorites = useFavorites();
   
   useEffect(() => {
@@ -193,9 +199,9 @@ function Search() {
         >
 
           {loading && (
-            <p>
-              Searching sounds...
-            </p>
+            <SoundSkeleton
+              count={8}
+            />
           )}
 
           {error && (
@@ -208,10 +214,13 @@ function Search() {
             !error &&
             query &&
             sounds.length === 0 && (
-              <p className="empty-message">
-                No sounds found for
-                "{query}".
-              </p>
+              <EmptyState
+                icon="⌕"
+                title={`No results for "${query}"`}
+                description="Try a shorter or broader search such as rain, bell, nature, retro or notification."
+                actionLabel="Browse All Sounds"
+                actionTo="/ringtones"
+              />
             )}
 
           {!loading &&

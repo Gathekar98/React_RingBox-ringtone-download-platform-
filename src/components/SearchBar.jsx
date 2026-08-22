@@ -1,5 +1,4 @@
 import {
-  useEffect,
   useState,
 } from "react";
 
@@ -12,21 +11,11 @@ import "./SearchBar.css";
 function SearchBar({
   initialValue = "",
 }) {
-  const [
-    query,
-    setQuery,
-  ] = useState(
-    initialValue
-  );
+  const [query, setQuery] =
+    useState(initialValue);
 
   const navigate =
     useNavigate();
-
-  useEffect(() => {
-    setQuery(
-      initialValue
-    );
-  }, [initialValue]);
 
   const handleSubmit =
     (event) => {
@@ -53,7 +42,6 @@ function SearchBar({
         handleSubmit
       }
     >
-
       <span className="search-bar__icon">
         ⌕
       </span>
@@ -74,7 +62,6 @@ function SearchBar({
       <button type="submit">
         Search
       </button>
-
     </form>
   );
 }

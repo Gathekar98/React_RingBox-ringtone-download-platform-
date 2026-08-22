@@ -1,9 +1,4 @@
 import {
-  createContext,
-  useContext,
-} from "react";
-
-import {
   useAudioPlayer,
 } from "../hooks/useAudioPlayer";
 
@@ -11,8 +6,9 @@ import {
   useRecentlyPlayed,
 } from "../hooks/useRecentlyPlayed";
 
-const AudioPlayerContext =
-  createContext(null);
+import {
+  AudioPlayerContext,
+} from "./audioPlayerContext";
 
 export function AudioPlayerProvider({
   children,
@@ -54,19 +50,4 @@ export function AudioPlayerProvider({
       {children}
     </AudioPlayerContext.Provider>
   );
-}
-
-export function useGlobalAudioPlayer() {
-  const context =
-    useContext(
-      AudioPlayerContext
-    );
-
-  if (!context) {
-    throw new Error(
-      "useGlobalAudioPlayer must be used inside AudioPlayerProvider"
-    );
-  }
-
-  return context;
 }

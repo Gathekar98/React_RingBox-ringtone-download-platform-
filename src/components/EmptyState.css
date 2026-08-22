@@ -1,0 +1,71 @@
+.empty-state {
+  padding:
+    60px 24px;
+
+  text-align: center;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    var(--radius-lg);
+
+  background:
+    var(--surface);
+}
+
+.empty-state__icon {
+  width: 64px;
+  height: 64px;
+
+  margin:
+    0 auto 20px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 18px;
+
+  background:
+    var(--primary-soft);
+
+  color:
+    var(--primary);
+
+  font-size: 2rem;
+}
+
+.empty-state h2 {
+  font-size: 1.35rem;
+}
+
+.empty-state p {
+  max-width: 480px;
+
+  margin:
+    10px auto 0;
+
+  color:
+    var(--text-secondary);
+
+  line-height: 1.6;
+}
+
+.empty-state__action {
+  display: inline-flex;
+
+  margin-top: 22px;
+
+  padding:
+    11px 17px;
+
+  border-radius:
+    var(--radius-sm);
+
+  background:
+    var(--primary);
+
+  color: white;
+
+  font-weight: 600;
+}

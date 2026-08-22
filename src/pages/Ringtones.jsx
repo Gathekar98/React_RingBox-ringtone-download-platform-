@@ -12,6 +12,9 @@ import SoundGrid
 import Pagination
   from "../components/Pagination";
 
+import SoundSkeleton
+  from "../components/SoundSkeleton";
+
 import {
   searchSounds,
 } from "../api/freesound";
@@ -155,9 +158,9 @@ function Ringtones() {
         >
 
           {loading && (
-            <p>
-              Loading sounds...
-            </p>
+            <SoundSkeleton
+              count={8}
+            />
           )}
 
           {error && (

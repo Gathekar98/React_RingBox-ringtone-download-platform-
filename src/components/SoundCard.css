@@ -282,3 +282,27 @@
 
   font-size: 0.75rem;
 }
+
+@media (max-width: 600px) {
+  .hero__title {
+    font-size:
+      clamp(
+        3rem,
+        15vw,
+        4.5rem
+      );
+  }
+
+  .hero__description {
+    font-size: 0.95rem;
+  }
+
+  .hero__search {
+    width: 100%;
+  }
+
+  .hero__trending {
+    gap:
+      9px 12px;
+  }
+}

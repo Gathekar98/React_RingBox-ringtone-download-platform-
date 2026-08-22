@@ -5,6 +5,9 @@ import {
   useGlobalAudioPlayer,
 } from "../context/AudioPlayerContext";
 
+import EmptyState
+  from "../components/EmptyState";
+
 import {
   useFavorites,
 } from "../hooks/useFavorites";
@@ -55,9 +58,13 @@ function Recent() {
           }}
         >
           {recentlyPlayed.length === 0 ? (
-            <p className="empty-message">
-              You haven't played any sounds yet.
-            </p>
+            <EmptyState
+                icon="↺"
+                title="Nothing played yet"
+                description="Play a sound and it will appear in your recently played list."
+                actionLabel="Explore Sounds"
+                actionTo="/ringtones"
+                />
           ) : (
             <SoundGrid
               sounds={recentlyPlayed}

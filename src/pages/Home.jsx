@@ -6,6 +6,9 @@ import {
 import Hero
   from "../components/Hero";
 
+import SoundSkeleton
+  from "../components/SoundSkeleton";
+  
 import SoundGrid
   from "../components/SoundGrid";
 
@@ -217,9 +220,9 @@ function Home() {
           >
 
             {loading && (
-              <p>
-                Loading sounds...
-              </p>
+               <SoundSkeleton
+                  count={8}
+                />
             )}
 
             {error && (

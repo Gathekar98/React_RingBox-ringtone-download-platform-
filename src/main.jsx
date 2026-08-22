@@ -8,7 +8,7 @@ import {
 
 import {
   AudioPlayerProvider,
-} from "./context/AudioPlayerContext";
+} from "./context/AudioPlayerContext.jsx";
 
 import "./index.css";
 

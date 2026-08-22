@@ -8,11 +8,6 @@ export function useAudioPlayer() {
   const audioRef =
     useRef(null);
 
-  if (!audioRef.current) {
-    audioRef.current =
-      new Audio();
-  }
-
   const [
     currentSound,
     setCurrentSound,
@@ -35,7 +30,10 @@ export function useAudioPlayer() {
 
   useEffect(() => {
     const audio =
-      audioRef.current;
+      new Audio();
+
+    audioRef.current =
+      audio;
 
     const handleTimeUpdate =
       () => {
@@ -58,7 +56,6 @@ export function useAudioPlayer() {
     const handleEnded =
       () => {
         setIsPlaying(false);
-
         setCurrentTime(0);
       };
 
@@ -124,6 +121,9 @@ export function useAudioPlayer() {
         "play",
         handlePlay
       );
+
+      audioRef.current =
+        null;
     };
   }, []);
 
@@ -132,7 +132,10 @@ export function useAudioPlayer() {
       const audio =
         audioRef.current;
 
-      if (!sound?.preview) {
+      if (
+        !audio ||
+        !sound?.preview
+      ) {
         return;
       }
 
@@ -216,12 +219,15 @@ export function useAudioPlayer() {
       const audio =
         audioRef.current;
 
+      if (!audio) {
+        return;
+      }
+
       audio.pause();
 
       audio.currentTime = 0;
 
       setCurrentTime(0);
-
       setIsPlaying(false);
     };
 
