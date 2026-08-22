@@ -21,8 +21,8 @@ import {
 } from "../utils/normalizeSound";
 
 import {
-  useAudioPlayer,
-} from "../hooks/useAudioPlayer";
+  useGlobalAudioPlayer,
+} from "../context/AudioPlayerContext";
 
 import {
   useFavorites,
@@ -59,7 +59,7 @@ function Ringtones() {
   ] = useState(0);
 
   const audioPlayer =
-    useAudioPlayer();
+  useGlobalAudioPlayer();
 
   useEffect(() => {
     async function loadSounds() {

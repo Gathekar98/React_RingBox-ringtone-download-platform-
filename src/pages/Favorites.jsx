@@ -4,8 +4,8 @@ import SoundGrid
   from "../components/SoundGrid";
 
 import {
-  useAudioPlayer,
-} from "../hooks/useAudioPlayer";
+  useGlobalAudioPlayer,
+} from "../context/AudioPlayerContext";
 
 import {
   useFavorites,
@@ -13,7 +13,7 @@ import {
 
 function Favorites() {
   const audioPlayer =
-    useAudioPlayer();
+  useGlobalAudioPlayer();
 
   const favorites =
     useFavorites();

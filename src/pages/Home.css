@@ -1,0 +1,47 @@
+.recent-header {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content:
+    space-between;
+
+  gap: 20px;
+}
+
+.recent-clear {
+  border:
+    1px solid var(--border);
+
+  padding:
+    9px 14px;
+
+  border-radius:
+    var(--radius-sm);
+
+  background:
+    var(--surface);
+
+  color:
+    var(--text-secondary);
+}
+
+.recent-clear:hover {
+  background:
+    var(--surface-hover);
+
+  color:
+    var(--text-primary);
+}
+
+@media (
+  max-width: 600px
+) {
+  .recent-header {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+  }
+}

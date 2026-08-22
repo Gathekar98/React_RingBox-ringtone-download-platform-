@@ -1,7 +1,15 @@
-import { Outlet } from "react-router-dom";
+import {
+  Outlet,
+} from "react-router-dom";
 
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Navbar
+  from "./Navbar";
+
+import Footer
+  from "./Footer";
+
+import BottomPlayer
+  from "./BottomPlayer";
 
 function Layout() {
   return (
@@ -13,6 +21,8 @@ function Layout() {
       </main>
 
       <Footer />
+
+      <BottomPlayer />
     </>
   );
 }

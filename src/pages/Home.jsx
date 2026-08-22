@@ -27,8 +27,8 @@ import {
 } from "../hooks/useFavorites";
 
 import {
-  useAudioPlayer,
-} from "../hooks/useAudioPlayer";
+  useGlobalAudioPlayer,
+} from "../context/AudioPlayerContext";
 
 import {
   categories,
@@ -49,8 +49,14 @@ function Home() {
     error,
     setError,
   ] = useState("");
+  
+  
   const favorites = useFavorites();
-  const audioPlayer = useAudioPlayer();
+  const audioPlayer =
+  useGlobalAudioPlayer();
+  
+  const recentlyPlayed =
+  audioPlayer.recentlyPlayed;
 
   useEffect(() => {
     async function loadSounds() {
@@ -131,6 +137,63 @@ function Home() {
         </div>
 
       </section>
+
+      {recentlyPlayed.length > 0 && (
+        <section className="section">
+
+          <div className="container">
+
+            <div className="recent-header">
+
+              <div>
+
+                <h2 className="section-title">
+                  Recently Played
+                </h2>
+
+                <p className="section-description">
+                  Pick up where you
+                  left off.
+                </p>
+
+              </div>
+
+              <button
+                type="button"
+                className="recent-clear"
+                onClick={
+                  audioPlayer
+                    .clearRecentlyPlayed
+                }
+              >
+                Clear
+              </button>
+
+            </div>
+
+            <div
+              style={{
+                marginTop:
+                  "32px",
+              }}
+            >
+              <SoundGrid
+                sounds={
+                  recentlyPlayed
+                }
+                audioPlayer={
+                  audioPlayer
+                }
+                favorites={
+                  favorites
+                }
+              />
+            </div>
+
+          </div>
+
+        </section>
+      )}
 
       <section className="section">
 

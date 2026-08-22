@@ -25,8 +25,8 @@ import {
 } from "../utils/normalizeSound";
 
 import {
-  useAudioPlayer,
-} from "../hooks/useAudioPlayer";
+  useGlobalAudioPlayer,
+} from "../context/AudioPlayerContext";
 
 import {
   useFavorites,
@@ -70,7 +70,8 @@ function Search() {
   ] = useState(0);
 
   const audioPlayer =
-    useAudioPlayer();
+  useGlobalAudioPlayer();
+  
   const favorites = useFavorites();
   
   useEffect(() => {

@@ -7,6 +7,11 @@ body {
   min-height: 100vh;
 }
 
+main {
+  min-height: 70vh;
+  padding-bottom: 100px;
+}
+
 .container {
   width: min(100% - 32px, var(--container-width));
   margin-inline: auto;

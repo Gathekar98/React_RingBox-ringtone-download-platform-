@@ -18,8 +18,8 @@ import {
 } from "../utils/normalizeSound";
 
 import {
-  useAudioPlayer,
-} from "../hooks/useAudioPlayer";
+  useGlobalAudioPlayer,
+} from "../context/AudioPlayerContext";
 
 import SoundGrid
   from "../components/SoundGrid";
@@ -56,7 +56,7 @@ function SoundDetails() {
   ] = useState("");
 
   const audioPlayer =
-    useAudioPlayer();
+  useGlobalAudioPlayer();
    
     const favorites =
     useFavorites();
@@ -327,7 +327,7 @@ function SoundDetails() {
                         favorites={favorites}
                     />
                 </div>
-                
+
               <p className="sound-details__creator">
                 Uploaded by{" "}
                 <strong>

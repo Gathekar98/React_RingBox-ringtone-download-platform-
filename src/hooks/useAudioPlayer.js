@@ -14,8 +14,8 @@ export function useAudioPlayer() {
   }
 
   const [
-    currentSoundId,
-    setCurrentSoundId,
+    currentSound,
+    setCurrentSound,
   ] = useState(null);
 
   const [
@@ -58,7 +58,18 @@ export function useAudioPlayer() {
     const handleEnded =
       () => {
         setIsPlaying(false);
+
         setCurrentTime(0);
+      };
+
+    const handlePause =
+      () => {
+        setIsPlaying(false);
+      };
+
+    const handlePlay =
+      () => {
+        setIsPlaying(true);
       };
 
     audio.addEventListener(
@@ -74,6 +85,16 @@ export function useAudioPlayer() {
     audio.addEventListener(
       "ended",
       handleEnded
+    );
+
+    audio.addEventListener(
+      "pause",
+      handlePause
+    );
+
+    audio.addEventListener(
+      "play",
+      handlePlay
     );
 
     return () => {
@@ -93,6 +114,16 @@ export function useAudioPlayer() {
         "ended",
         handleEnded
       );
+
+      audio.removeEventListener(
+        "pause",
+        handlePause
+      );
+
+      audio.removeEventListener(
+        "play",
+        handlePlay
+      );
     };
   }, []);
 
@@ -101,21 +132,17 @@ export function useAudioPlayer() {
       const audio =
         audioRef.current;
 
-      if (!sound.preview) {
+      if (!sound?.preview) {
         return;
       }
 
       if (
-        currentSoundId ===
+        currentSound?.id ===
         sound.id
       ) {
         if (audio.paused) {
           try {
             await audio.play();
-
-            setIsPlaying(
-              true
-            );
           } catch (error) {
             console.error(
               "Playback failed:",
@@ -124,10 +151,6 @@ export function useAudioPlayer() {
           }
         } else {
           audio.pause();
-
-          setIsPlaying(
-            false
-          );
         }
 
         return;
@@ -140,8 +163,8 @@ export function useAudioPlayer() {
 
       audio.currentTime = 0;
 
-      setCurrentSoundId(
-        sound.id
+      setCurrentSound(
+        sound
       );
 
       setCurrentTime(0);
@@ -152,40 +175,69 @@ export function useAudioPlayer() {
 
       try {
         await audio.play();
-
-        setIsPlaying(true);
       } catch (error) {
         console.error(
           "Playback failed:",
           error
         );
-
-        setIsPlaying(false);
       }
     };
 
-  const seek = (time) => {
-    const audio =
-      audioRef.current;
+  const seek =
+    (time) => {
+      const audio =
+        audioRef.current;
 
-    if (!audio) {
-      return;
-    }
+      if (!audio) {
+        return;
+      }
 
-    audio.currentTime =
-      Number(time);
+      const newTime =
+        Number(time);
 
-    setCurrentTime(
-      Number(time)
-    );
-  };
+      if (
+        !Number.isFinite(
+          newTime
+        )
+      ) {
+        return;
+      }
+
+      audio.currentTime =
+        newTime;
+
+      setCurrentTime(
+        newTime
+      );
+    };
+
+  const stopSound =
+    () => {
+      const audio =
+        audioRef.current;
+
+      audio.pause();
+
+      audio.currentTime = 0;
+
+      setCurrentTime(0);
+
+      setIsPlaying(false);
+    };
 
   return {
-    currentSoundId,
+    currentSound,
+
+    currentSoundId:
+      currentSound?.id ||
+      null,
+
     isPlaying,
     currentTime,
     duration,
+
     playSound,
     seek,
+    stopSound,
   };
 }
